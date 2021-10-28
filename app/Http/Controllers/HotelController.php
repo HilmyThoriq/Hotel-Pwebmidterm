@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\HotelStoreRequest;
+use App\Models\Hotel;
 use Illuminate\Http\Request;
 
 class HotelController extends Controller
@@ -14,7 +15,7 @@ class HotelController extends Controller
      */
     public function index()
     {
-       return "list of hotel";
+       return view('hotel.index');
     }
 
     /**
@@ -35,7 +36,16 @@ class HotelController extends Controller
      */
     public function store(HotelStoreRequest $request)
     {
-        
+        $path = $request->image->store('public/hotel');
+        Hotel::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'per_day_hotel_price'=>$request->per_day_hotel_price,
+            'per_week_hotel_price'=>$request->per_week_hotel_price,
+            'category'=> $request->category,
+            'image'=> $path,
+        ]);
+        return redirect()->route('hotel.index')->with('message','Hotel added successfully!');
     }
 
     /**

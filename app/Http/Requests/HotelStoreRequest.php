@@ -26,8 +26,8 @@ class HotelStoreRequest extends FormRequest
         return [
             'name'=> 'required|string|min:3|max:40',
             'description'=>'required|min:3|max:500',
-            'per_day_hotel_price'=>'required|number',
-            'per_week_hotel_price'=>'required|number',
+            'per_day_hotel_price'=>'required|numeric',
+            'per_week_hotel_price'=>'required|numeric',
             'category'=>'required',
             'image'=>'required|mimes:png,jpeg,jpg'
         ];
