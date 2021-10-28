@@ -8,8 +8,8 @@
                 <div class="card-header">Menu</div>
                 <div class="card-body">
                     <ul class="list-group">
-                        <a href="" class="list-group-item list-group-item-action">View</a>
-                        <a href="" class="list-group-item list-group-item-action">Create</a>
+                        <a href="{{route('hotel.index')}}" class="list-group-item list-group-item-action">View</a>
+                        <a href="{{route('hotel.create')}}" class="list-group-item list-group-item-action">Create</a>
                     </ul>
                 </div>
             </div>
