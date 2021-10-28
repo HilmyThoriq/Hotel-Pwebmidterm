@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\HotelStoreRequest;
 use Illuminate\Http\Request;
 
 class HotelController extends Controller
@@ -13,7 +14,7 @@ class HotelController extends Controller
      */
     public function index()
     {
-        return view('hotel.index');
+       return "list of hotel";
     }
 
     /**
@@ -23,7 +24,7 @@ class HotelController extends Controller
      */
     public function create()
     {
-        //
+        return view('hotel.create');
     }
 
     /**
@@ -32,9 +33,9 @@ class HotelController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(HotelStoreRequest $request)
     {
-        //
+        
     }
 
     /**

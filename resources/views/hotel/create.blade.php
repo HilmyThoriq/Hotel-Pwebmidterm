@@ -18,10 +18,18 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Hotel</div>
+                    @if(count($errors)>0) 
+                        <div class="alert alert-danger">
+                            @foreach ($errors->all() as $error)
+                               <p>{{ $error }}</p> 
+                            @endforeach
+                    @endif
+                        </div>
+                <form action="{{route('hotel.store')}}" method="post">@csrf
                 <div class="card-body">
                     <div class="form-group">
                         <label for="name">Name of Hotel</label>
-                        <input type="text" ckass="form-control" name="name" placeholder="name of hotel">
+                        <input type="text" class="form-control" name="name" placeholder="name of hotel">
                     </div>
                     <div class="form-group">
                         <label for="description">Description of Hotel</label>
@@ -29,19 +37,19 @@
                     </div>
                     <div class="form-inline">
                         <label>Hotel Price(Rp.)</label>
-                        <input type="number" class="form-control" placeholder="per day hotel price">
-                        <input type="number" class="form-control" placeholder="per week hotel price"> 
+                        <input type="number" name="per_day_hotel_price" placeholder="per day hotel price">
+                        <input type="number" name="per_week_hotel_price" placeholder="per week hotel price"> 
                     </div>
                     <div class="form-group">
                         <label for="description">Category</label>
-                        <select class="form-control">
+                        <select name="category">
                             <option value="Single Bed">Single Bed</option>
                             <option value="Double Bed">Double Bed</option>
                         </select>              
                     </div>
                     <div class="form-group">
                     <label>Image</label>
-                    <input type="file" class="form-control">
+                    <input type="file" name="image "class="form-control">
                     </div>
                     <div class="form-group text-center">
                         <button class="btn btn-primary" type="submit">Save</button>
