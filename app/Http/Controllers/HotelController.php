@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\HotelStoreRequest;
+use App\Http\Requests\HotelUpdateRequest;
 use App\Models\Hotel;
 use Illuminate\Http\Request;
 
@@ -68,7 +69,9 @@ class HotelController extends Controller
      */
     public function edit($id)
     {
-        //
+        
+        $hotel = Hotel::find($id);
+        return view('hotel.edit', compact('hotel'));
     }
 
     /**
@@ -78,9 +81,24 @@ class HotelController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(HotelUpdateRequest $request, $id)
     {
-        //
+        $hotel = Hotel::find($id);
+        if($request->has('image')){
+            $path = $request->image->storage('public/hotel');
+        }else{
+            $path = $hotel->image;
+        }
+        $hotel = new Hotel;
+        $hotel->name = $request->name;
+        $hotel->description = $request->description;
+        $hotel->per_day_hotel_price = $request->per_day_hotel_price;
+        $hotel->per_week_hotel_price = $request->per_week_hotel_price;
+        $hotel->category = $request->category;
+        $hotel->image = $path;
+        $hotel->save();
+        return redirect()->route('hotel.index')->with('message','Hotel update successfully!');
+
     }
 
     /**
@@ -91,6 +109,8 @@ class HotelController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Hotel::find($id)->delete();
+        return redirect()->route('hotel.index')->with('message','Hotel delete successfully!');
+
     }
 }

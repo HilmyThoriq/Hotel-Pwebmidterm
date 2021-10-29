@@ -25,3 +25,6 @@ Route::get('/hotel', [App\Http\Controllers\HotelController::class, 'index'])->na
 
 Route::get('/hotel/create', [App\Http\Controllers\HotelController::class, 'create'])->name('hotel.create');
 Route::post('/hotel/store', [App\Http\Controllers\HotelController::class, 'store'])->name('hotel.store');
+Route::get('/hotel/{id}/edit', [App\Http\Controllers\HotelController::class, 'edit'])->name('hotel.edit');
+Route::put('/hotel/{id}/update', [App\Http\Controllers\HotelController::class, 'update'])->name('hotel.update');
+Route::delete('/hotel/{id}/delete', [App\Http\Controllers\HotelController::class, 'destroy'])->name('hotel.destroy');

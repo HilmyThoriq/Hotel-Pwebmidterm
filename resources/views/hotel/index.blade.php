@@ -28,6 +28,7 @@
     </tr>
   </thead>
   <tbody>
+      @if(count($hotels)>0)
       @foreach($hotels as $key=> $hotel)
     <tr>
       <th scope="row">{{$key+1}}</th>
@@ -37,11 +38,37 @@
         <td>{{$hotel->category}}</td>
         <td>{{$hotel->per_day_hotel_price}}</td>
         <td>{{$hotel->per_week_hotel_price}}</td>
-        <td><button class="btn btn-primary">Edit</button></td>
-        <td><button class="btn btn-danger">Delete</button></td>
+        <td><a href="{{route('hotel.edit',$hotel->id)}}"><button class="btn btn-primary">Edit</button></a></td>
+        <td><button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal{{ $hotel->id }}">Delete</button></td>
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal{{ $hotel->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <form action="{{route('hotel.destroy', $hotel->id)}}" method="post">@csrf
+                                @method('DELETE')
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Deleting hotel</h5>
+                                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure? 
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </div>
+                                  </div>
+                                </div>
+                            </form>
+                          </div>
     </tr>
       @endforeach
-   
+      
+      @else 
+      <p>No hotel to show</p>
+      @endif
+
+  </tbody>
                     </table>
                 </div>
             </div>
