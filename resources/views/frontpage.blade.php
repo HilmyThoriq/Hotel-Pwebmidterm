@@ -10,10 +10,11 @@
                 <div class="card-body">
                     
                         <form action="{{route('frontpage')}}" method="get">
-                        <a href="/">Back</a>
+                        <button href="/" class="btn btn-secondary">Back</button>
                         <input type="submit" value="Single Bed" name="category"class="list-group-item list-group-item-action"></input>
                         <input type="submit" value="Double Bed" name="category"class="list-group-item list-group-item-action"></input>
                         </form>
+                        <h1 class="text-center">{{count($hotels)}} hotel</h1>
                                    {{ __('') }}
                 </div>
             </div>
