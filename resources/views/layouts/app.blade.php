@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"  rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -58,32 +58,7 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    @if (auth()->user()->is_admin == 0)
-                                        
-                                        <a class="dropdown-item" href="{{route('customers')}}" 
-                                        
-                                        >
-                                        {{ __('All customers') }}
-                                        </a>
-
-                                        <a class="dropdown-item" href="{{route('home')}}" 
-                                        
-                                        >
-                                        {{ __('Your order history') }}
-                                        </a>
-
-                                    @endif 
-
-                                    @if (auth()->user()->is_admin == 1)
-                                        
-                                        <a class="dropdown-item"href="{{route('user.order')}}"
-                                        
-                                        >
-                                        {{ __('User Order') }}
-                                        </a>
-                                        
-                                    @endif  
-                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
